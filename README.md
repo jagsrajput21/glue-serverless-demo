@@ -16,11 +16,9 @@ $ serverless deploy
 After running deploy, you should see output similar to:
 
 ```bash
-Deploying aws-node-project to stage dev (us-east-1)
+Deploying glue-serverless-demo to stage dev (us-east-1)
 
-✔ Service deployed to stack aws-node-project-dev (112s)
+✔ Service deployed to stack glue-serverless-demo-dev (112s)
 
-functions:
-  hello: aws-node-project-dev-hello (1.5 kB)
 ```
 
