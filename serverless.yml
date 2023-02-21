@@ -1,0 +1,36 @@
+service: glue-serverless-demo
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  region: ap-south-1
+
+custom:
+  prune:
+    automatic: true
+    number: 5
+  pythonRequirements:
+    dockerizePip: non-linux
+
+Glue:
+  bucketDeploy: <bucket-name> # Required
+  createBucket: true
+  s3Prefix: glue_resource/etl_scripts/
+  jobs:
+    - name: demo_etl_job
+      scriptPath: jobs/demo_etl_job.py
+      type: spark
+      glueVersion: python3-4.0
+      role: <role-arn>
+      MaxCapacity: 1
+      MaxRetries: 0
+
+plugins:
+  - serverless-glue
+  - serverless-prune-plugin
+
+package:
+  include:
+    - "jobs/**"
+  exclude:
+    - "node_modules/**"
